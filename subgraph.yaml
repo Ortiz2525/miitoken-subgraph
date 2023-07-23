@@ -1,0 +1,33 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: MIIToken
+    network: mumbai
+    source:
+      address: "0xaEbFA83b52AB51106Df7457D6d029Aae90898e71"
+      abi: MIIToken
+      startBlock: 38231201
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - NameChanged
+        - OwnershipTransferred
+        - Transfer
+      abis:
+        - name: MIIToken
+          file: ./abis/MIIToken.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: NameChanged(string,address)
+          handler: handleNameChanged
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/mii-token.ts
