@@ -1,6 +1,6 @@
 specVersion: 0.0.5
 schema:
-  file: ./schema.graphql
+  file: schema.graphql
 dataSources:
   - kind: ethereum
     name: MIIToken
@@ -20,7 +20,7 @@ dataSources:
         - Transfer
       abis:
         - name: MIIToken
-          file: ./abis/MIIToken.json
+          file: MIIToken\abis\MIIToken.json
       eventHandlers:
         - event: Approval(indexed address,indexed address,uint256)
           handler: handleApproval
@@ -30,4 +30,4 @@ dataSources:
           handler: handleOwnershipTransferred
         - event: Transfer(indexed address,indexed address,uint256)
           handler: handleTransfer
-      file: ./src/mii-token.ts
+      file: MIIToken\MIIToken.wasm
